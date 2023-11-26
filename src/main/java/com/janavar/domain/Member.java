@@ -5,45 +5,42 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
-@Table(name = "tb_members")
 @Getter
 @Setter
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "tb_members")
 public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Setter(AccessLevel.NONE)
+    private Long memberId;
 
-    @NotBlank(message = "Kullanıcı adı boş bırakılamaz")
-    @Column(name = "member_name",nullable = false,length = 35)
-    @Size(min = 2, max = 35, message = "'${valitedValue}' uzunluğu {min} ve {max} arasında olmalı")
-    private final String memberName;
+    @NotBlank(message = "Kullanici adi bos birakilamaz!")
+    @Size(min = 2, max = 35, message = "'${validatedValue}' uzunlugu {min} ve {max} arasinda olmalidir!")
+    @Column(name = "member_name", nullable = false, length = 35)
+    private String memberName;
 
-    @NotBlank(message = "Kullanıcı soyadı boş bırakılamaz")
-    @Column(name = "member_surname",nullable = false,length = 35)
-    @Size(min = 2, max = 35,message = "'${valitedValue}' uzunluğu {min} ve {max} arasında olmalı")
-    private final String memberSurname;
+    @NotBlank(message = "Kullanici soyadi bos birakilamaz!")
+    @Size(min = 2, max = 35, message = "'${validatedValue}' uzunlugu {min} ve {max} arasinda olmalidir!")
+    @Column(name = "member_surname", nullable = false, length = 35)
+    private String memberSurname;
 
-    @Column(name = "member_phonenumber",length = 35,unique = true)
+    @Column(name = "member_phone", length = 15, unique = true)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "+###########")
-    private final String phoneNumber;
+    private String memberPhone;
 
     @Email
-    private final String email;
+    @Column(name = "member_email", unique = true)
+    private String email;
 
-    @OneToMany(mappedBy = "member",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "member", fetch = FetchType.EAGER)
     private List<Book> book;
-
-
-
-
 
 }

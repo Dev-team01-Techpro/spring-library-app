@@ -18,7 +18,7 @@ public ResponseEntity<Book> getBookById(@PathVariable("id") Long id)
 public ResponseEntity<String> deleteBook(@PathVariable("id") Long id)
 public ResponseEntity<String> updateBook(@PathVariable("id") Long id, @Valid @RequestBody BookDTO BookDTO)
 
-## Domain Katmanı 
+## Domain Katmanı
 
 #### Book Classı
 
@@ -27,26 +27,21 @@ Bu Class, kütüphanedeki Bookların temel özelliklerini içerir.
 - **Alanlar (Fields):**
   - `bookID` : **Long** Kitabın adı
   - `bookName`: **String** Kitabın adı
-  - `basimYili` : **Int** Kitabın basım yılı
-  - `yazari` : **String** Kitabın yazarı
-  -`sayfaSayisi`: **Int**Kitabın sayfa sayısı
-  - `tur` : **String** Kitabın türü
-
-  
+  - `publishYear` : **String** Kitabın basım yılı
+  - `author` : **String** Kitabın yazarı
+  - `pageNumber`: **String**Kitabın sayfa sayısı
+  - `type` : **String** Kitabın türü
 
 #### Member Class
 
 Bu Class, kütüphaneye uye olan kisilerin temel ozelliklerinie içerir.
 
-  
-
 - **Alanlar (Fields):**
 - `memberId` : **Long** Uye Id si
 - `memberName` : **String** Uye adı
 - `memberSurname` : **String** Uye Soyadi
-- `memberMobilePhone`: **Int** Uye telefon
-
-  
+- `memberPhone`: **String** Uye telefon
+- `email`: **String** Uye e-posta hesabi
 
 @JoinTable(name="tbl_member_book",
 joinColumns = @JoinColumn(name="member_id"),
@@ -54,8 +49,6 @@ inverseJoinColumns = @JoinColumn(name="book_id"))
 @OneToMany(fetch=FetchType.EAGER)
 
 private List<Book> books= new ArrayList<>();
-
-  
 
 #### Methodlar
 
