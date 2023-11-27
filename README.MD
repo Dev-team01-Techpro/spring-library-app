@@ -1,5 +1,5 @@
 # Kütüphane Projesi
-Bu proje, Spring Boot kullanılarak geliştirilen basit bir kütüphane yönetim projesidir.  
+Bu proje, Spring Boot kullanılarak geliştirilen basit bir kütüphane yönetim projesidir.
 
 ## Gereklilikler
 ![Dependencies](dependencies.png)
@@ -12,11 +12,11 @@ Proje, iki POJO Classı içerir ve veritabanı bağlantısı olmadan basit küt�
 
 BookController Classi
 
-public ResponseEntity<List<Book>> listAllBooks()
-public ResponseEntity<Map<String, String>> createBook(@Valid @RequestBody Book Book)
-public ResponseEntity<Book> getBookById(@PathVariable("id") Long id)
-public ResponseEntity<String> deleteBook(@PathVariable("id") Long id)
-public ResponseEntity<String> updateBook(@PathVariable("id") Long id, @Valid @RequestBody BookDTO BookDTO)
+- public ResponseEntity<List<Book>> listAllBooks()
+- public ResponseEntity<Map<String, String>> createBook(@Valid @RequestBody Book Book)
+- public ResponseEntity<Book> getBookById(@PathVariable("id") Long id)
+- public ResponseEntity<String> deleteBook(@PathVariable("id") Long id)
+- public ResponseEntity<String> updateBook(@PathVariable("id") Long id, @Valid @RequestBody BookDTO BookDTO)
 
 ## Domain Katmanı
 
@@ -25,12 +25,12 @@ public ResponseEntity<String> updateBook(@PathVariable("id") Long id, @Valid @Re
 Bu Class, kütüphanedeki Bookların temel özelliklerini içerir.
 
 - **Alanlar (Fields):**
-  - `bookID` : **Long** Kitabın adı
-  - `bookName`: **String** Kitabın adı
-  - `publishYear` : **String** Kitabın basım yılı
-  - `author` : **String** Kitabın yazarı
-  - `pageNumber`: **String**Kitabın sayfa sayısı
-  - `type` : **String** Kitabın türü
+	- `bookID` : **Long** Kitabın adı
+	- `bookName`: **String** Kitabın adı
+	- `publishYear` : **String** Kitabın basım yılı
+	- `author` : **String** Kitabın yazarı
+	- `pageNumber`: **String**Kitabın sayfa sayısı
+	- `type` : **String** Kitabın türü
 
 #### Member Class
 
@@ -53,14 +53,14 @@ private List<Book> books= new ArrayList<>();
 #### Methodlar
 
 Bu Class, temel getter ve setter methodlarıyla birlikte CRUD işlemlerini gerçekleştirecek methodları içerir.
-- `getBookAdi()`: Kitabın adını getirir.
-- `setBookAdi(String BookAdi)`: Kitabın adını ayarlar.
-- `getBasimYili()`: Kitabın basım yılını getirir.
-- `setBasimYili(int basimYili)`: Kitabın basım yılını ayarlar.
-- `getYazari()`: Kitabın yazarını getirir.
-- `setYazari(String yazari)`: Kitabın yazarını ayarlar.
-- `getSayfaSayisi()`: Kitabın sayfa sayısını getirir.
-- `setSayfaSayisi(int sayfaSayisi)`: Kitabın sayfa sayısını ayarlar.
+- `getBookName()`: Kitabın adını getirir.
+- `setBookName(String bookName)`: Kitabın adını ayarlar.
+- `getPublishYear()`: Kitabın basım yılını getirir.
+- `setPublishYear(int publishYear)`: Kitabın basım yılını ayarlar.
+- `getAuthor()`: Kitabın yazarını getirir.
+- `setgetAuthor(String author)`: Kitabın yazarını ayarlar.
+- `getPageNumber()`: Kitabın sayfa sayısını getirir.
+- `setPageNumbe(int pageNumbe)`: Kitabın sayfa sayısını ayarlar.
 - `getTur()`: Kitabın türünü getirir.
 - `setTur(String tur)`: Kitabın türünü ayarlar.
 - `createBook()`: Yeni bir Book oluşturur.
@@ -73,11 +73,11 @@ Bu Class, temel getter ve setter methodlarıyla birlikte CRUD işlemlerini gerç
 Bu Class, kütüphanedeki Bookların temel özelliklerini içerir.
 
 - **Alanlar (Fields):**
-	- `BookAdi` : **String** Kitabın adı
-	- `basimYili` : **Int** Kitabın basım yılı
-	- `yazari` : **String** Kitabın yazarı
-	- `tur` : **String** Kitabın türü
-	- `sayfaSayisi`: **Int** Kitabın sayfa sayısı
+	- `bookName` : **String** Kitabın adı
+	- `publishYear` : **Int** Kitabın basım yılı
+	- `author` : **String** Kitabın yazarı
+	- `type` : **String** Kitabın türü
+	- `pageNumber`: **Int** Kitabın sayfa sayısı
 
 ## Exception Katmanı
 * ResourceNotFoundException Class
@@ -88,15 +88,15 @@ BookRepository Class
 Service Classinin veritabanindan istedigi Crud islemlerini yapar.
 
 1. **Kitap Ekleme:**
-   - `createBook()` methodunu kullanarak yeni bir Book ekleyebilirsiniz.
-   2. **Kitap Okuma:**
-   - `readBook()` methoduyla var olan bir kitabın bilgilerini alabilirsiniz.
+	- `createBook()` methodunu kullanarak yeni bir Book ekleyebilirsiniz.
+	2. **Kitap Okuma:**
+	- `readBook()` methoduyla var olan bir kitabın bilgilerini alabilirsiniz.
 3. **Kitap Guncelleme:**
-   - `updateBook()` methoduyla var olan bir kitabın bilgilerini güncelleyebilirsiniz.
+	- `updateBook()` methoduyla var olan bir kitabın bilgilerini güncelleyebilirsiniz.
 4. **Kitap Silme:**
-   - `deleteBook()` methoduyla var olan bir kitabı silebilirsiniz.
+	- `deleteBook()` methoduyla var olan bir kitabı silebilirsiniz.
 5. **Tum Kitapları Listeleme:**
-   - `listAllBook()` methodunu kullanarak yeni bir Book ekleyebilirsiniz.
+	- `listAllBook()` methodunu kullanarak yeni bir Book ekleyebilirsiniz.
 
 ## API Endpoint'leri
 
@@ -141,7 +141,7 @@ Aşağıda temel kullanım adımları bulunmakta
 5. **Tum Kitaplari Listeleme:**
 	- `listAllBooks()` methodunu kullanarak yeni bir Book ekleyebilirsiniz.
 
-  
+
 
 ### MemberService Class
 
