@@ -6,13 +6,11 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookDTO {
-
 
     private Long bookID;
 
@@ -38,11 +36,11 @@ public class BookDTO {
 
     public BookDTO(Book book) {
         this.bookID = book.getBookID();
-        this.bookName =book.getBookName();
+        this.bookName = book.getBookName();
         this.publishYear = book.getPublishYear();
-        this.author =book.getAuthor() ;
+        this.author = book.getAuthor();
         this.pageNumber = book.getPageNumber();
-        this.type =book.getType() ;
+        this.type = book.getType();
     }
 }
 

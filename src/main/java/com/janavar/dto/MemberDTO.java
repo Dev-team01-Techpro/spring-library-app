@@ -30,9 +30,9 @@ public class MemberDTO {
     private String email;
 
     public MemberDTO(Member member) {
-        this.memberId =member.getMemberId();
+        this.memberId = member.getMemberId();
         this.memberName = member.getMemberName();
-        this.memberSurname = member.getMemberSurname() ;
+        this.memberSurname = member.getMemberSurname();
         this.memberPhone = member.getMemberPhone();
         this.email = member.getEmail();
 
