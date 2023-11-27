@@ -22,4 +22,10 @@ public class BookService {
         return bookRepository.findById(id).orElseThrow(()->
                 new ResourceNotFoundException("Book not found by this id: " + id));
     }
+
+    public void createBook(Book book) {
+
+        bookRepository.save(book);
+
+    }
 }
