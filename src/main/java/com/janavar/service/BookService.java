@@ -15,17 +15,17 @@ public class BookService {
     private BookRepository bookRepository;
 
     public List<Book> listAllBooks() {
-     return bookRepository.findAll();
+        return bookRepository.findAll();
     }
 
     public Book findById(Long id) {
-        return bookRepository.findById(id).orElseThrow(()->
+        return bookRepository.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("Book not found by this id: " + id));
     }
 
     public void createBook(Book book) {
-
         bookRepository.save(book);
-
     }
+
+
 }
