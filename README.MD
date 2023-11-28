@@ -13,8 +13,8 @@ Proje, iki POJO Classı içerir ve veritabanı bağlantısı olmadan basit küt�
 BookController Classi
 
 - public ResponseEntity<List<Book>> listAllBooks()
-- public ResponseEntity<Map<String, String>> createBook(@Valid @RequestBody Book Book)
 - public ResponseEntity<Book> getBookById(@PathVariable("id") Long id)
+- public ResponseEntity<Map<String, String>> createBook(@Valid @RequestBody Book Book)
 - public ResponseEntity<String> deleteBook(@PathVariable("id") Long id)
 - public ResponseEntity<String> updateBook(@PathVariable("id") Long id, @Valid @RequestBody BookDTO BookDTO)
 
@@ -31,7 +31,10 @@ Bu Class, kütüphanedeki Bookların temel özelliklerini içerir.
 	- `author` : **String** Kitabın yazarı
 	- `pageNumber`: **String**Kitabın sayfa sayısı
 	- `type` : **String** Kitabın türü
-
+@ManyToOne
+@JoinColumn(name = "member_id")
+private Member member;
+  
 #### Member Class
 
 Bu Class, kütüphaneye uye olan kisilerin temel ozelliklerinie içerir.
@@ -43,11 +46,8 @@ Bu Class, kütüphaneye uye olan kisilerin temel ozelliklerinie içerir.
 - `memberPhone`: **String** Uye telefon
 - `email`: **String** Uye e-posta hesabi
 
-@JoinTable(name="tbl_member_book",
-joinColumns = @JoinColumn(name="member_id"),
-inverseJoinColumns = @JoinColumn(name="book_id"))
-@OneToMany(fetch=FetchType.EAGER)
-
+@OneToMany(mappedBy = "member", fetch = FetchType.EAGER)
+private List<Book> book;
 private List<Book> books= new ArrayList<>();
 
 #### Methodlar
@@ -61,8 +61,8 @@ Bu Class, temel getter ve setter methodlarıyla birlikte CRUD işlemlerini gerç
 - `setgetAuthor(String author)`: Kitabın yazarını ayarlar.
 - `getPageNumber()`: Kitabın sayfa sayısını getirir.
 - `setPageNumbe(int pageNumbe)`: Kitabın sayfa sayısını ayarlar.
-- `getTur()`: Kitabın türünü getirir.
-- `setTur(String tur)`: Kitabın türünü ayarlar.
+- `getType()`: Kitabın türünü getirir.
+- `setType(String tur)`: Kitabın türünü ayarlar.
 - `createBook()`: Yeni bir Book oluşturur.
 - `readBook()`: Var olan bir kitabın bilgilerini getirir.
 - `updateBook()`: Var olan bir kitabın bilgilerini günceller.
@@ -79,6 +79,24 @@ Bu Class, kütüphanedeki Bookların temel özelliklerini içerir.
 	- `type` : **String** Kitabın türü
 	- `pageNumber`: **Int** Kitabın sayfa sayısı
 
+#### Constructor
+
+- `public BookDTO(Book book)`: Book sınıfının fieldlarını BookDTO sınıfına setler
+
+#### MemberDTO Classı
+Bu Class, kütüphane üyelerinin temel özelliklerini içerir.
+
+- **Alanlar (Fields):**
+- `memberId` : **Long** Uye Id si
+- `memberName` : **String** Uye adı
+- `memberSurname` : **String** Uye Soyadi
+- `memberPhone`: **String** Uye telefon
+- `email`: **String** Uye e-posta hesabi
+
+#### Constructor
+
+- `public MemberDTO(Member member)`: Member sınıfının fieldlarını MemberDTO sınıfına setler
+	
 ## Exception Katmanı
 * ResourceNotFoundException Class
 
@@ -124,7 +142,8 @@ Service Classinin veritabanindan istedigi Crud islemlerini yapar.
 	- Path: /book/{bookId}
 	- Method: DELETE
 	- Açıklama: Belirli bir kitabı siler.
-## Service Katmanı 
+  
+## Service Katmanı
 ### BookService Class
 
 Proje temel olarak Book Classinin işlemlerini gerçekleştirmek için tasarlanmıştır.
