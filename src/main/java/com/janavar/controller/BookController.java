@@ -1,6 +1,7 @@
 package com.janavar.controller;
 
 import com.janavar.domain.Book;
+import com.janavar.dto.BookDTO;
 import com.janavar.service.BookService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +32,11 @@ public class BookController {
     }
 
     @PostMapping  // http://localhost:8080/books  Post + Json
-    public ResponseEntity<Map<String, String>> createBook(@Valid @RequestBody Book book){
+    public ResponseEntity<Map<String, String>> createBook(@Valid @RequestBody BookDTO bookDTO){
 
-        bookService.createBook(book);
+        //Book classtan BookDTO yaptık
+
+        bookService.createBook(bookDTO);
         Map<String,String> messages = new HashMap<>();
         messages.put("message", "Kitap olusturma islemi basarili");
         messages.put("status","true");
@@ -46,6 +49,15 @@ public class BookController {
         String message="Book deleted successfully";
         return new ResponseEntity<>(message,HttpStatus.OK);
         //return ResponseEntity.ok(message);
+    }
+
+    @PutMapping("/query") //http://localhost:8080/query?id=1 + PUT + JSON
+    public ResponseEntity<String> updateById(@RequestParam("id") Long id,
+                                             @Valid @RequestBody BookDTO bookDTO){
+        bookService.updateById(id,bookDTO);
+        String message = "Kayıt başarılı";
+
+        return ResponseEntity.ok(message);
     }
 
 }
