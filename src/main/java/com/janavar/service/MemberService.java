@@ -37,4 +37,16 @@ public class MemberService {
         memberRepository.save(member);
 
     }
+
+    public void updateMember(Long id, MemberDTO memberDTO) {
+
+        Member member = getMemberId(id);
+        member.setMemberName(memberDTO.getMemberName());
+        member.setMemberSurname(memberDTO.getMemberSurname());
+        member.setEmail(memberDTO.getEmail());
+        member.setMemberPhone(memberDTO.getMemberPhone());
+
+        memberRepository.save(member);
+
+    }
 }

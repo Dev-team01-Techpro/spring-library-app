@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/member")
+@RequestMapping("/member") //http://localhost:8080/member
 public class MemberController {
 
     @Autowired
@@ -47,6 +47,17 @@ public class MemberController {
         map.put("Status","true");
 
         return new ResponseEntity<>(map, HttpStatus.CREATED);
+    }
+
+    @PatchMapping ("/{id}") //http://localhost:8080/member/1 post+json
+    // Todo PatchMapping ve PutMapping kullanima gore test edilecek. Kullanici sadece bir fieldi degistirmek istediginde
+    public ResponseEntity<Map<String, String>> updateMember(@PathVariable ("id") Long id,@RequestBody @Valid MemberDTO memberDTO){
+
+         memberService.updateMember(id, memberDTO);
+         Map<String,String> message = new HashMap();
+         message.put("messege","Update Islemi basarili");
+         message.put("Status","True");
+         return ResponseEntity.ok(message);
     }
 
 
