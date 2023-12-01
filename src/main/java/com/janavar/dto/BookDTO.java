@@ -34,6 +34,7 @@ public class BookDTO {
     @Size(min = 1, max = 30, message = "'${validatedValue}' isimli kitap turu; {min} ve {max} arasinda olmalidir!")
     private String type;
 
+
     public BookDTO(Book book) {
         this.bookID = book.getBookID();
         this.bookName = book.getBookName();
