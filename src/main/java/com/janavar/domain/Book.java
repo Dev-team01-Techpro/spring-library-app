@@ -43,6 +43,8 @@ public class Book {
     @Column(name = "book_page", nullable = false, length = 30, unique = true)
     private String type;
 
+
+
     @ManyToOne
     @JoinColumn(name = "member_id")
     private Member member;

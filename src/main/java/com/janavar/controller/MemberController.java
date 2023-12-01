@@ -1,15 +1,17 @@
 package com.janavar.controller;
 
 import com.janavar.domain.Member;
+import com.janavar.dto.MemberDTO;
 import com.janavar.service.MemberService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/member")
@@ -35,6 +37,17 @@ public class MemberController {
 
     }
 
+    @PostMapping
+    public ResponseEntity<Map<String ,String >>createMember(@Valid @RequestBody MemberDTO memberDTO){
+
+        memberService.createMember(memberDTO);
+
+        Map<String,String> map=new HashMap<>();
+        map.put("message:","Kaydimiz tamamlanmistir.");
+        map.put("Status","true");
+
+        return new ResponseEntity<>(map, HttpStatus.CREATED);
+    }
 
 
 
