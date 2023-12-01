@@ -60,7 +60,14 @@ public class MemberController {
          return ResponseEntity.ok(message);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String>deleteMember (@PathVariable("id")Long id) {
+
+        memberService.deleteMember(id);
+        String mesasge = " Member deleted succesfully";
+
+        return ResponseEntity.ok(mesasge);
 
 
-
+    }
 }
