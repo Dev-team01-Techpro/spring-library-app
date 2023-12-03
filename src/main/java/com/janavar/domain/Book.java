@@ -40,10 +40,8 @@ public class Book {
 
     @NotBlank(message = "Kitap turu bos birakilamaz!")
     @Size(min = 1, max = 30, message = "'${validatedValue}' isimli kitap turu; {min} ve {max} arasinda olmalidir!")
-    @Column(name = "book_page", nullable = false, length = 30, unique = true)
+    @Column(name = "book_type", nullable = false, length = 30)
     private String type;
-
-
 
     @ManyToOne
     @JoinColumn(name = "member_id")

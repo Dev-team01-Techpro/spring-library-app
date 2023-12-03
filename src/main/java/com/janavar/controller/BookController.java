@@ -43,7 +43,7 @@ public class BookController {
         return new ResponseEntity<>(messages, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{id}") //http://localhost:8080/books/1
+    @DeleteMapping("/delete/{id}") //http://localhost:8080/books/delete/1
     public ResponseEntity<String> deleteBook(@PathVariable("id") Long id){
         bookService.deleteBook(id);
         String message="Book deleted successfully";
