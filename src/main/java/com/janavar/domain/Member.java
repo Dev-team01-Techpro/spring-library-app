@@ -1,6 +1,7 @@
 package com.janavar.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -19,7 +20,7 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter(AccessLevel.NONE)
+    //@Setter(AccessLevel.NONE)
     private Long memberId;
 
     @NotBlank(message = "Kullanici adi bos birakilamaz!")
@@ -41,6 +42,7 @@ public class Member {
     private String email;
 
     @OneToMany(mappedBy = "member", fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<Book> book;
 
 }

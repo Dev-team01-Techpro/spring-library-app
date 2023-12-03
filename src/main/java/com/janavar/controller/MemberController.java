@@ -38,7 +38,7 @@ public class MemberController {
     }
 
     @PostMapping
-    public ResponseEntity<Map<String ,String >>createMember(@Valid @RequestBody MemberDTO memberDTO){
+    public ResponseEntity<Map<String ,String>> createMember(@Valid @RequestBody MemberDTO memberDTO){
 
         memberService.createMember(memberDTO);
 
@@ -61,7 +61,7 @@ public class MemberController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String>deleteMember (@PathVariable("id")Long id) {
+    public ResponseEntity<String> deleteMember (@PathVariable("id")Long id) {
 
         memberService.deleteMember(id);
         String mesasge = " Member deleted succesfully";

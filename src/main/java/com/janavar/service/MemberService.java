@@ -34,6 +34,7 @@ public class MemberService {
         member.setMemberPhone(memberDTO.getMemberPhone());
 
 
+
         memberRepository.save(member);
 
     }
