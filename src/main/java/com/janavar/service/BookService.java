@@ -54,6 +54,7 @@ public class BookService {
         bookRepository.delete(book);
     }
 
+        //Todo uptade methodunda kitap odunc alan kullaniciya kitabi atamaya calisacagiz
     public void updateById(Long id, BookDTO bookDTO) {
 
         Book book = findById(id);
