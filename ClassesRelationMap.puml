@@ -1,0 +1,81 @@
+@startuml
+class com.janavar.SpringLibraryApplication {
++ {static} void main(String[])
+}
+class com.janavar.controller.MemberController {
+- MemberService memberService
++ ResponseEntity<List<Member>> listAllMember()
++ ResponseEntity<Member> getMemberById(Long)
++ ResponseEntity<Map<String,String>> createMember(MemberDTO)
++ ResponseEntity<Map<String,String>> updateMember(Long,MemberDTO)
++ ResponseEntity<String> deleteMember(Long)
+}
+class com.janavar.domain.Member {
+- Long memberId
+- String memberName
+- String memberSurname
+- String memberPhone
+- String email
+- List<Book> book
+}
+class com.janavar.dto.BookDTO {
+- Long bookID
+- String bookName
+- String publishYear
+- String author
+- String pageNumber
+- String type
+}
+class com.janavar.service.BookService {
+- BookRepository bookRepository
+- MemberService memberService
++ List<Book> listAllBooks()
++ Book findById(Long)
++ void createBook(BookDTO)
++ void deleteBook(Long)
++ void updateById(Long,BookDTO)
+}
+class com.janavar.dto.MemberDTO {
+- Long memberId
+- String memberName
+- String memberSurname
+- String memberPhone
+- String email
+}
+interface com.janavar.repository.MemberRepository {
+}
+class com.janavar.controller.BookController {
+- BookService bookService
++ ResponseEntity<List<Book>> listAllBooks()
++ ResponseEntity<Book> getBookById(Long)
++ ResponseEntity<Map<String,String>> createBook(BookDTO)
++ ResponseEntity<String> deleteBook(Long)
++ ResponseEntity<String> updateById(Long,BookDTO)
+}
+class com.janavar.domain.Book {
+- Long bookID
+- String bookName
+- String publishYear
+- String author
+- String pageNumber
+- String type
+- Member member
+}
+class com.janavar.service.MemberService {
+- MemberRepository memberRepository
++ List<Member> getAllMember()
++ Member getMemberId(Long)
++ void createMember(MemberDTO)
++ void updateMember(Long,MemberDTO)
++ void deleteMember(Long)
+}
+interface com.janavar.repository.BookRepository {
+}
+class com.janavar.exception.ResourceNotFoundException {
+}
+
+
+org.springframework.data.jpa.repository.JpaRepository <|-- com.janavar.repository.MemberRepository
+org.springframework.data.jpa.repository.JpaRepository <|-- com.janavar.repository.BookRepository
+com.janavar.exception.RuntimeException <|-- com.janavar.exception.ResourceNotFoundException
+@enduml
